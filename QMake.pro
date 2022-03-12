@@ -22,4 +22,6 @@ SOURCES =   src/main/app_launcher.cpp \
 
 QT += widgets
 
+LIBS += -lboost_iostreams
+
 TARGET = ultimate_geocache_tool
