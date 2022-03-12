@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="sudoku.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="mm"
+     width="100mm"
+     inkscape:zoom="1.5037598"
+     inkscape:cx="99.084972"
+     inkscape:cy="186.53245"
+     inkscape:window-width="1852"
+     inkscape:window-height="1016"
+     inkscape:window-x="68"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="77.392073"
+       y="77.550895"
+       width="87.331799"
+       height="90.854504"
+       id="rect6005" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#f2f2f2;stroke-width:0.11566"
+       id="rect31"
+       width="64"
+       height="64"
+       x="18"
+       y="18"
+       ry="0.42958963" />
+    <rect
+       style="fill:#000000;stroke-width:0.220888"
+       id="rect359"
+       width="2"
+       height="64"
+       x="49"
+       y="18"
+       ry="0.80048335" />
+    <rect
+       style="fill:#000000;stroke-width:0.221746"
+       id="rect487"
+       width="64"
+       height="2"
+       x="18"
+       y="49"
+       ry="0.55381036" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text6003"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6005);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="25.984495"
+       y="33.00906"
+       id="text37649"><tspan
+         sodipodi:role="line"
+         id="tspan37647"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.8907px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.447267"
+       x="26.966467"
+       y="40.42453"
+       id="text62811"
+       inkscape:transform-center-x="-3.7151912"
+       inkscape:transform-center-y="-2.971166"><tspan
+         sodipodi:role="line"
+         id="tspan62809"
+         style="font-weight:bold;stroke-width:0.447267"
+         x="26.966467"
+         y="40.42453">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.9341px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.448354"
+       x="60.08271"
+       y="40.42453"
+       id="text65301"><tspan
+         sodipodi:role="line"
+         id="tspan65299"
+         style="font-weight:bold;stroke-width:0.448354"
+         x="60.08271"
+         y="40.42453">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.7421px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.443554"
+       x="60.08271"
+       y="72.634705"
+       id="text68099"><tspan
+         sodipodi:role="line"
+         id="tspan68097"
+         style="font-weight:bold;stroke-width:0.443554"
+         x="60.08271"
+         y="72.634705">3</tspan></text>
+  </g>
+</svg>

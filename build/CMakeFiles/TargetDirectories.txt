@@ -1,0 +1,3 @@
+/home/igli/Desktop/ultimate_geocache_tool/build/CMakeFiles/rebuild_cache.dir
+/home/igli/Desktop/ultimate_geocache_tool/build/CMakeFiles/edit_cache.dir
+/home/igli/Desktop/ultimate_geocache_tool/build/CMakeFiles/ultimate_geocache_tool.dir

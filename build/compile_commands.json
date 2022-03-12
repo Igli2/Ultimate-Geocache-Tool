@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/main/app_launcher.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/main/app_launcher.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/main/app_launcher.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/main/main_widget.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/main/main_widget.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/main/main_widget.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/menu/menu_widget.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/menu/menu_widget.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/menu/menu_widget.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/menu/menu_button.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/menu/menu_button.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/menu/menu_button.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/content/content_holder.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/content/content_holder.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/content/content_holder.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/content/content_base.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/content/content_base.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/content/content_base.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/content/image/image_analyzer.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/content/image/image_analyzer.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/content/image/image_analyzer.cpp"
+},
+{
+  "directory": "/home/igli/Desktop/ultimate_geocache_tool/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/ultimate_geocache_tool.dir/src/content/image/png_decoder.cpp.o -c /home/igli/Desktop/ultimate_geocache_tool/src/content/image/png_decoder.cpp",
+  "file": "/home/igli/Desktop/ultimate_geocache_tool/src/content/image/png_decoder.cpp"
+}
+]
