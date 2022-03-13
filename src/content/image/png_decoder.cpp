@@ -39,13 +39,28 @@ void PNGDecoder::decode(std::string file) {
         }
         this->get_uint(image_stream);
     }
-    // TODO: get all data after image end
+    this->decode_appended_data(image_stream);
 }
 
+/* Function to read all data until EOF into the appended data string */
+void PNGDecoder::decode_appended_data(std::ifstream& image_stream) {
+    std::stringstream out_stream;
+    char c;
+    while (true) {
+        image_stream.read(&c, 1);
+        if (image_stream.eof()) {
+            break;
+        }
+        out_stream << c;
+    }
+    this->appended_data = out_stream.str();
+}
+
+/* Function for reading the data segment of a zTXt chunk and decode it using zlib inflate/deflate if compressed */
 void PNGDecoder::decode_compressed_text(std::ifstream& image_stream, unsigned int chunk_length) {
     std::stringstream stream;
 
-    char c;
+    char c = '\0';
     while ((c = this->get_byte(image_stream)) != '\0') {
         stream << c;
         chunk_length--;
@@ -56,7 +71,7 @@ void PNGDecoder::decode_compressed_text(std::ifstream& image_stream, unsigned in
     unsigned int compression_method = this->get_byte(image_stream);
     chunk_length--;
     if (compression_method != 0) {
-        std::cout << "Unknown compression method" << std::endl;
+        std::cout << "Not a standard compression method" << std::endl;
     }
 
     std::stringstream compressed;
@@ -174,4 +189,16 @@ std::string PNGDecoder::get_last_edited() {
 
 const std::vector<std::string>& PNGDecoder::get_text() {
     return this->text;
+}
+
+unsigned int PNGDecoder::get_width() {
+    return this->img_width;
+}
+
+unsigned int PNGDecoder::get_height() {
+    return this->img_height;
+}
+
+std::string PNGDecoder::get_appended_data() {
+    return this->appended_data;
 }
