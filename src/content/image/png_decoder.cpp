@@ -4,7 +4,7 @@ PNGDecoder::PNGDecoder() {}
 
 /* https://www.nayuki.io/page/png-file-chunk-inspector 
  * Use this tool to verify correctness of code */
-void PNGDecoder::decode(std::string file) {
+bool PNGDecoder::decode(std::string file) {
     std::ifstream image_stream;
     image_stream.open(file, std::ifstream::in | std::ifstream::binary);
 
@@ -12,7 +12,7 @@ void PNGDecoder::decode(std::string file) {
     bool valid = this->decode_signature(image_stream);
     if (!valid) {
         std::cout << "Not a png file" << std::endl;
-        return;
+        return false;
     }
 
     /* Parse any chunk */
@@ -40,6 +40,8 @@ void PNGDecoder::decode(std::string file) {
         this->get_uint(image_stream);
     }
     this->decode_appended_data(image_stream);
+
+    return true;
 }
 
 /* Function to read all data until EOF into the appended data string */

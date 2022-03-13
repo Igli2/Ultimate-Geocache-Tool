@@ -39,7 +39,7 @@ class PNGDecoder {
         unsigned short get_short(std::ifstream& image_stream);
     public:
         PNGDecoder();
-        void decode(std::string file);
+        bool decode(std::string file);
         std::string get_last_edited();
         const std::vector<std::string>& get_text();
         unsigned int get_width();

@@ -75,7 +75,11 @@ void ImageAnalyzer::save_file_dialog() {
 
 void ImageAnalyzer::decode_file(QString file) {
     this->png_decoder = new PNGDecoder();
-    this->png_decoder->decode(file.toStdString());
+    bool successful = this->png_decoder->decode(file.toStdString());
+    if (!successful) {
+        this->image_properties->setText("<h2><b>Image Properties</b></h2><br>Image format not supported.<br>");
+        return;
+    }
 
     /* Goal: http://fotoforensics.com/, something like that */
     /* Generate the text to display */
