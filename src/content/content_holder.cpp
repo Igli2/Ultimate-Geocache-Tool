@@ -13,6 +13,12 @@ ContentHolder::ContentHolder(QWidget* parent) : QWidget{parent}, current_content
     this->layout->addWidget(this->views.at(this->current_content_index));
 }
 
+ContentHolder::~ContentHolder() {
+    for (ContentBase* ptr : this->views) {
+        delete ptr;
+    }
+}
+
 void ContentHolder::create_views() {
     ContentBase* base = new ContentBase();
     base->setStyleSheet("background-color:green;");

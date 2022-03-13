@@ -1,6 +1,6 @@
 #include "png_decoder.h"
 
-PNGDecoder::PNGDecoder() : last_edited{} {}
+PNGDecoder::PNGDecoder() {}
 
 /* https://www.nayuki.io/page/png-file-chunk-inspector 
  * Use this tool to verify correctness of code */
@@ -31,7 +31,7 @@ void PNGDecoder::decode(std::string file) {
         } else if (chunk_name == "zTXt") {
             this->decode_compressed_text(image_stream, chunk_length);
         } else {
-            /* Ignore chunk data for any other chunk */
+            /* Ignore chunk data for any other chunk (non-standard chunks?! -> display extra) */
             // std::cout << chunk_length << " " << chunk_name << std::endl;
             for (unsigned int i = 0; i < chunk_length; i++) {
                 this->get_byte(image_stream);

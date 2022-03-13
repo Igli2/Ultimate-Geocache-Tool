@@ -25,4 +25,5 @@ class ImageAnalyzer : public ContentBase {
         void save_file_dialog();
     public:
         ImageAnalyzer(QWidget* parent = NULL);
+        ~ImageAnalyzer();
 };

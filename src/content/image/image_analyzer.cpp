@@ -47,6 +47,10 @@ ImageAnalyzer::ImageAnalyzer(QWidget* parent) : ContentBase{parent} {
     connect(save_appended_data, &QPushButton::released, this, &ImageAnalyzer::save_file_dialog);
 }
 
+ImageAnalyzer::~ImageAnalyzer() {
+    delete this->png_decoder;
+}
+
 /* Open a file dialog and select an image file, update image preview and labels */
 void ImageAnalyzer::open_file_dialog() {
     QString file = QFileDialog::getOpenFileName(this, "Open Image", QDir::currentPath(), "*.png *.jpg *.jpeg");

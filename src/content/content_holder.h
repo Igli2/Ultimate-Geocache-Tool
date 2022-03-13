@@ -18,6 +18,7 @@ class ContentHolder : public QWidget {
         void create_views();
     public:
         ContentHolder(QWidget* parent = NULL);
+        ~ContentHolder();
     public slots:
         void set_content(int index);
 };
