@@ -39,6 +39,7 @@ void PNGDecoder::decode(std::string file) {
         }
         this->get_uint(image_stream);
     }
+    // TODO: get all data after image end
 }
 
 void PNGDecoder::decode_compressed_text(std::ifstream& image_stream, unsigned int chunk_length) {
@@ -69,7 +70,7 @@ void PNGDecoder::decode_compressed_text(std::ifstream& image_stream, unsigned in
     out.push(compressed);
     boost::iostreams::copy(out, decompressed);
 
-    std::cout << "###" << decompressed.str() << "###" << std::endl;
+    // std::cout << "###" << decompressed.str() << "###" << std::endl;
     // if exif data is found:
     // https://exifdata.com/exif.php
     // https://stackoverflow.com/questions/1821515/how-is-exif-info-encoded
@@ -96,14 +97,15 @@ void PNGDecoder::decode_text(std::ifstream& image_stream, unsigned int chunk_len
 
 /* Function for reading the data segment of a tIME chunk */
 void PNGDecoder::decode_time(std::ifstream& image_stream) {
-    this->last_edited = {
-        this->get_short(image_stream),
-        (unsigned short) this->get_byte(image_stream),
-        (unsigned short) this->get_byte(image_stream),
-        (unsigned short) this->get_byte(image_stream),
-        (unsigned short) this->get_byte(image_stream),
-        (unsigned short) this->get_byte(image_stream)
-    };
+    unsigned short year = this->get_short(image_stream);
+    unsigned short month = this->get_byte(image_stream);
+    unsigned short day = this->get_byte(image_stream);
+    unsigned short hour = this->get_byte(image_stream);
+    unsigned short minute = this->get_byte(image_stream);
+    unsigned short second = this->get_byte(image_stream);
+
+    this->last_edited.setDate(QDate(year, month, day));
+    this->last_edited.setTime(QTime(hour, minute, second));
 }
 
 /* Function for reading the data segment of a IHDR chunk */
@@ -167,7 +169,7 @@ std::string PNGDecoder::get_chunk_name(std::ifstream& image_stream) {
 }
 
 std::string PNGDecoder::get_last_edited() {
-    return time_to_string(this->last_edited);
+    return this->last_edited.toString().toStdString();
 }
 
 const std::vector<std::string>& PNGDecoder::get_text() {
