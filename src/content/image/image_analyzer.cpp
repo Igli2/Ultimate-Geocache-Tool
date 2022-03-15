@@ -32,7 +32,7 @@ ImageAnalyzer::ImageAnalyzer(QWidget* parent) : ContentBase{parent} {
 
     this->appended_data = new QTextEdit();
     this->appended_data->setReadOnly(true);
-    this->appended_data->setText(QString("Appended data after IEND chunk\n\n"));
+    this->appended_data->setText(QString("Appended data after IEND chunk:\n\n"));
     layout->addWidget(this->appended_data);
 
     QPushButton* save_appended_data = new QPushButton();
@@ -74,7 +74,7 @@ void ImageAnalyzer::save_file_dialog() {
 }
 
 void ImageAnalyzer::decode_file(QString file) {
-    this->png_decoder = new PNGDecoder();
+    this->png_decoder->reset();
     bool successful = this->png_decoder->decode(file.toStdString());
     if (!successful) {
         this->image_properties->setText("<h2><b>Image Properties</b></h2><br>Image format not supported.<br>");
@@ -94,5 +94,5 @@ void ImageAnalyzer::decode_file(QString file) {
 
     this->image_properties->setText(QString(text.str().c_str()));
 
-    this->appended_data->setText(QString("Appended data after IEND chunk\n\n") + QString(this->png_decoder->get_appended_data().c_str()));
+    this->appended_data->setText(QString("Appended data after IEND chunk:\n\n") + QString(this->png_decoder->get_appended_data().c_str()));
 }

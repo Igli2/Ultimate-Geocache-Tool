@@ -87,7 +87,7 @@ void PNGDecoder::decode_compressed_text(std::ifstream& image_stream, unsigned in
     out.push(compressed);
     boost::iostreams::copy(out, decompressed);
 
-    // std::cout << "###" << decompressed.str() << "###" << std::endl;
+    std::cout << "###" << decompressed.str() << "###" << std::endl;
     // if exif data is found:
     // https://exifdata.com/exif.php
     // https://stackoverflow.com/questions/1821515/how-is-exif-info-encoded
@@ -203,4 +203,18 @@ unsigned int PNGDecoder::get_height() {
 
 std::string PNGDecoder::get_appended_data() {
     return this->appended_data;
+}
+
+void PNGDecoder::reset() {
+    this->img_width = 0;
+    this->img_height = 0;
+    this->img_bit_depth = 0;
+    this->img_color_type = 0;
+    this->img_compression_method = 0;
+    this->img_filter_method = 0;
+    this->img_interlace_method = 0;
+    this->last_edited.setDate(QDate(0, 0, 0));
+    this->last_edited.setTime(QTime(0, 0, 0));
+    this->text.clear();
+    this->appended_data = "";
 }

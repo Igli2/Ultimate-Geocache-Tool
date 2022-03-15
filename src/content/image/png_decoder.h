@@ -40,6 +40,7 @@ class PNGDecoder {
     public:
         PNGDecoder();
         bool decode(std::string file);
+        void reset();
         std::string get_last_edited();
         const std::vector<std::string>& get_text();
         unsigned int get_width();
