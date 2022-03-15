@@ -20,9 +20,8 @@ ContentHolder::~ContentHolder() {
 }
 
 void ContentHolder::create_views() {
-    ContentBase* base = new ContentBase();
-    base->setStyleSheet("background-color:green;");
-    this->views.push_back(base);
+    SudokuWidget* sudoku = new SudokuWidget();
+    this->views.push_back(sudoku);
 
     ImageAnalyzer* img = new ImageAnalyzer();
     this->views.push_back(img);

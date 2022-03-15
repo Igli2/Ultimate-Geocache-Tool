@@ -15,6 +15,7 @@ add_executable(ultimate_geocache_tool
     src/content/content_base.h
     src/content/image/image_analyzer.h
     src/content/image/png_decoder.h
+    src/content/sudoku/sudoku_widget.h
 
     src/main/app_launcher.cpp
     src/main/main_widget.cpp
@@ -24,6 +25,7 @@ add_executable(ultimate_geocache_tool
     src/content/content_base.cpp
     src/content/image/image_analyzer.cpp
     src/content/image/png_decoder.cpp
+    src/content/sudoku/sudoku_widget.cpp
 )
 
 target_link_libraries(ultimate_geocache_tool Qt5::Widgets)

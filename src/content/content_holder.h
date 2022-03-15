@@ -6,6 +6,7 @@
 
 #include "content_base.h"
 #include "image/image_analyzer.h"
+#include "sudoku/sudoku_widget.h"
 
 class ContentHolder : public QWidget {
     /* Layout for content management */
