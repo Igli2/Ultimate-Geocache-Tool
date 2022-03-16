@@ -30,13 +30,15 @@ class SudokuWidget : public ContentBase {
         SudokuGrid* sudoku_grid;
         int filled_groups;
         int current_group;
+        int size;
 
         QHBoxLayout* create_sudoku_options();
+        void size_changed();
         void blocks_toggled();
         void solve();
     public:
         SudokuWidget(QWidget* parent = NULL);
-        int get_selected_size(); // TODO: save as int, only use this on selectionChanged()
+        int get_selected_size();
         Qt::CheckState get_blocks_state();
         Qt::CheckState get_grouping_state();
         void reset_groupings();
@@ -65,7 +67,7 @@ class SudokuField : public QLineEdit {
         SudokuWidget* sudoku_widget;
         int group;
 
-        void focusInEvent(QFocusEvent* event); // TODO
+        void focusInEvent(QFocusEvent* event);
     public:
         SudokuField(SudokuWidget* sudoku_widget, QWidget* parent = NULL);
         int get_group();

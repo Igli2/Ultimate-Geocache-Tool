@@ -1,6 +1,6 @@
 #include "sudoku_widget.h"
 
-SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent}, filled_groups{0}, current_group{0} {
+SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent}, filled_groups{0}, current_group{0}, size{9} {
     QVBoxLayout* main_layout = new QVBoxLayout(this);
 
     QHBoxLayout* options_layout = this->create_sudoku_options();
@@ -21,9 +21,9 @@ SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent}, filled_groups
     QSpacerItem* spacer = new QSpacerItem(1, 0, QSizePolicy::Fixed, QSizePolicy::Expanding);
     main_layout->addSpacerItem(spacer);
 
-    connect(this->size_select, &QComboBox::currentTextChanged, this->sudoku_grid, &SudokuGrid::on_size_selection_change);
     connect(solve_button, &QPushButton::released, this, &SudokuWidget::solve);
     connect(this->blocks_toggle, &QCheckBox::stateChanged, this, &SudokuWidget::blocks_toggled);
+    connect(this->size_select, &QComboBox::currentTextChanged, this, &SudokuWidget::size_changed);
 }
 
 /* Check the inputs for validness and then call the actual sudoku solver */
@@ -60,19 +60,10 @@ void SudokuWidget::solve() {
 
 /* Return the selected size in the size combo box as integer */
 int SudokuWidget::get_selected_size() {
-    QString current = this->size_select->currentText();
-    int size = 0;
-    if (current == "9x9") {
-        size = 9;
-    } else if (current == "16x16") {
-        size = 16;
-    } else {
-        size = 25;
-    }
-
-    return size;
+    return this->size;
 }
 
+/* Initialize the GUI, only called once from the constructor */
 QHBoxLayout* SudokuWidget::create_sudoku_options() {
     QHBoxLayout* layout = new QHBoxLayout();
 
@@ -109,14 +100,17 @@ QHBoxLayout* SudokuWidget::create_sudoku_options() {
     return layout;
 }
 
+/* Called when the state of the blocks checkbox has changed, updates the grid */
 void SudokuWidget::blocks_toggled() {
     this->sudoku_grid->repaint();
 }
 
+/* Returns the state of the blocks checkbox */
 Qt::CheckState SudokuWidget::get_blocks_state() {
     return this->blocks_toggle->checkState();
 }
 
+/* Returns the state of the grouping checkbox */
 Qt::CheckState SudokuWidget::get_grouping_state() {
     return this->grouping_mode->checkState();
 }
@@ -133,6 +127,20 @@ int SudokuWidget::next_group_id() {
     }
     this->current_group++;
     return this->filled_groups;
+}
+
+void SudokuWidget::size_changed() {
+    QString current = this->size_select->currentText();
+    this->size = 9;
+    if (current == "9x9") {
+        this->size = 9;
+    } else if (current == "16x16") {
+        this->size = 16;
+    } else {
+        this->size = 25;
+    }
+
+    this->sudoku_grid->on_size_selection_change();
 }
 
 
@@ -155,10 +163,6 @@ void SudokuGrid::create_sudoku_grid() {
     for (int x = 0; x < size; x++) {
         for (int y = 0; y < size; y++) {
             SudokuField* field = new SudokuField(this->sudoku_widget, NULL);
-            // QLineEdit* field = new QLineEdit();
-            // field->setFixedSize(25, 25);
-            // field->setMaxLength(1);
-            // field->setStyleSheet("background-color:rgb(37, 37, 37);");
             this->sudoku_grid->addWidget(field, y, x);
             this->grid_fields.push_back(field);
         }
@@ -246,6 +250,7 @@ void SudokuField::set_group(int id) {
     this->group = id;
 }
 
+/* Assigns the field a group id when it is clicked and the grouping checkbox is checked */
 void SudokuField::focusInEvent(QFocusEvent* event) {
     QLineEdit::focusInEvent(event);
     if (this->sudoku_widget->get_grouping_state() == Qt::CheckState::Checked && this->group == -1) {
