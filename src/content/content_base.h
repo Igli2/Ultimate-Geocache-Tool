@@ -9,5 +9,4 @@ class ContentBase : public QWidget {
         static int max_id;
 
         ContentBase(QWidget* parent = NULL);
-        const int* get_id();
 };

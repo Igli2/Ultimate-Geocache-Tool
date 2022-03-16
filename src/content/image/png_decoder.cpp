@@ -176,12 +176,8 @@ unsigned short PNGDecoder::get_short(std::ifstream& image_stream) {
 
 /* Get the next 4 bytes from image_stream as std::string */
 std::string PNGDecoder::get_chunk_name(std::ifstream& image_stream) {
-    std::string name = "....";
-    char buf;
-    for (int i = 0; i < 4; i++) {
-        image_stream.read(&buf, 1);
-        name[i] = buf;
-    }
+    std::string name(4, '\0');
+    image_stream.read(&name.front(), 4);
     return name;
 }
 
