@@ -1,6 +1,6 @@
 #include "sudoku_widget.h"
 
-SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent} {
+SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent}, filled_groups{0}, current_group{0} {
     QVBoxLayout* main_layout = new QVBoxLayout(this);
 
     QHBoxLayout* options_layout = this->create_sudoku_options();
@@ -23,10 +23,11 @@ SudokuWidget::SudokuWidget(QWidget* parent) : ContentBase{parent} {
 
     connect(this->size_select, &QComboBox::currentTextChanged, this->sudoku_grid, &SudokuGrid::on_size_selection_change);
     connect(solve_button, &QPushButton::released, this, &SudokuWidget::solve);
+    connect(this->blocks_toggle, &QCheckBox::stateChanged, this, &SudokuWidget::blocks_toggled);
 }
 
 /* Check the inputs for validness and then call the actual sudoku solver */
-// Parameters for solver: int size, std::vector<char> sudoku, std::string alphabet, std::vector<std::vector<int>> grid
+// Parameters for solver: int size, std::vector<char> sudoku, std::string alphabet, std::vector<std::vector<int>> groupings
 void SudokuWidget::solve() {
     this->error_label->setVisible(false);
 
@@ -93,7 +94,45 @@ QHBoxLayout* SudokuWidget::create_sudoku_options() {
     this->alphabet_edit->setPlaceholderText("123456789/abcdefghijklmnop/...");
     layout->addWidget(this->alphabet_edit);
 
+    this->blocks_toggle = new QCheckBox();
+    this->blocks_toggle->setText("Blocks");
+    this->blocks_toggle->setCheckState(Qt::CheckState::Checked);
+    this->blocks_toggle->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
+    layout->addWidget(this->blocks_toggle);
+
+    this->grouping_mode = new QCheckBox();
+    this->grouping_mode->setText("Group Clicked");
+    this->grouping_mode->setCheckState(Qt::CheckState::Unchecked);
+    this->grouping_mode->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
+    layout->addWidget(this->grouping_mode);
+
     return layout;
+}
+
+void SudokuWidget::blocks_toggled() {
+    this->sudoku_grid->repaint();
+}
+
+Qt::CheckState SudokuWidget::get_blocks_state() {
+    return this->blocks_toggle->checkState();
+}
+
+Qt::CheckState SudokuWidget::get_grouping_state() {
+    return this->grouping_mode->checkState();
+}
+
+void SudokuWidget::reset_groupings() {
+    this->filled_groups = 0;
+    this->current_group = 0;
+}
+
+int SudokuWidget::next_group_id() {
+    if (this->current_group >= this->get_selected_size()) {
+        this->filled_groups++;
+        this->current_group = 0;
+    }
+    this->current_group++;
+    return this->filled_groups;
 }
 
 
@@ -115,10 +154,11 @@ void SudokuGrid::create_sudoku_grid() {
 
     for (int x = 0; x < size; x++) {
         for (int y = 0; y < size; y++) {
-            QLineEdit* field = new QLineEdit();
-            field->setFixedSize(25, 25);
-            field->setMaxLength(1);
-            field->setStyleSheet("background-color:rgb(37, 37, 37);");
+            SudokuField* field = new SudokuField(this->sudoku_widget, NULL);
+            // QLineEdit* field = new QLineEdit();
+            // field->setFixedSize(25, 25);
+            // field->setMaxLength(1);
+            // field->setStyleSheet("background-color:rgb(37, 37, 37);");
             this->sudoku_grid->addWidget(field, y, x);
             this->grid_fields.push_back(field);
         }
@@ -131,8 +171,8 @@ void SudokuGrid::create_sudoku_grid() {
 /* Returns vector with QChars from grid or QChar::Null if line edit is empty */
 std::vector<QChar> SudokuGrid::sudoku_to_array(QString& alphabet) {
     std::vector<QChar> v;
-    for (QLineEdit* le : this->grid_fields) {
-        QString text = le->text();
+    for (SudokuField* field : this->grid_fields) {
+        QString text = field->text();
         if (!text.isEmpty()) {
             QChar c = text.at(0);
             if (alphabet.contains(c)) {
@@ -150,6 +190,7 @@ std::vector<QChar> SudokuGrid::sudoku_to_array(QString& alphabet) {
 /* Remove all LineEdits from the sudoku grid */
 void SudokuGrid::clear_sudoku_grid() {
     this->grid_fields.clear();
+    this->sudoku_widget->reset_groupings();
     QLayoutItem* item;
     while ((item = this->sudoku_grid->layout()->takeAt(0)) != NULL) {
         delete item->widget();
@@ -164,7 +205,11 @@ void SudokuGrid::on_size_selection_change() {
 
 /* Draw block lines in background */
 void SudokuGrid::paintEvent(QPaintEvent* event) {
-    Q_UNUSED(event);
+    QWidget::paintEvent(event);
+
+    if (this->sudoku_widget->get_blocks_state() == Qt::CheckState::Unchecked) {
+        return;
+    }
 
     int lines = std::sqrt(this->sudoku_widget->get_selected_size());
     QPainter painter(this);
@@ -180,5 +225,32 @@ void SudokuGrid::paintEvent(QPaintEvent* event) {
 
         QLine line2(0.0, start + x * lines * 30, 30 * lines * lines + 5, start + x * lines * 30);
         painter.drawLine(line2);
+    }
+}
+
+
+
+
+
+SudokuField::SudokuField(SudokuWidget* sudoku_widget, QWidget* parent) : QLineEdit{parent}, sudoku_widget{sudoku_widget}, group{-1} {
+    this->setFixedSize(25, 25);
+    this->setMaxLength(1);
+    this->setStyleSheet("background-color:rgb(37, 37, 37);");
+}
+
+int SudokuField::get_group() {
+    return this->group;
+}
+
+void SudokuField::set_group(int id) {
+    this->group = id;
+}
+
+void SudokuField::focusInEvent(QFocusEvent* event) {
+    QLineEdit::focusInEvent(event);
+    if (this->sudoku_widget->get_grouping_state() == Qt::CheckState::Checked && this->group == -1) {
+        this->group = this->sudoku_widget->next_group_id();
+        int color_hue = 360 / this->sudoku_widget->get_selected_size() * this->group;
+        this->setStyleSheet(QString("background-color:hsv(%1, 255, 255);").arg(color_hue));
     }
 }
