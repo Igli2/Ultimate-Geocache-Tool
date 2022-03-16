@@ -16,7 +16,6 @@ class MenuButton : public QPushButton {
         static int max_id;
 
         MenuButton(QString icon_path, ContentHolder* content, QWidget* parent = NULL);
-        const int* get_id();
         void handle_click();
     signals:
         void change_content(int id);

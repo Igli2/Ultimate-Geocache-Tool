@@ -1,6 +1,6 @@
 #include "menu_button.h"
 
-#include <iostream>
+int MenuButton::max_id = 0;
 
 MenuButton::MenuButton(QString icon_path, ContentHolder* content, QWidget* parent) : QPushButton{parent}, id{MenuButton::max_id++} {
     this->setIcon(QIcon(icon_path));
@@ -10,9 +10,6 @@ MenuButton::MenuButton(QString icon_path, ContentHolder* content, QWidget* paren
     connect(this, &MenuButton::change_content, content, &ContentHolder::set_content);
 }
 
-const int* MenuButton::get_id() {
-    return &this->id;
-}
 
 void MenuButton::handle_click() {
     emit this->change_content(this->id);
