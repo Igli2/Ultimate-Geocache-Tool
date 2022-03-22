@@ -5,7 +5,7 @@
 MainWidget::MainWidget(QWidget* parent) : QWidget{parent} {
     this->resize(800, 600);
     this->setWindowTitle("Ultimate Geocache Tool");
-    this->setWindowIcon(QIcon("../res/icon.svg"));
+    this->setWindowIcon(QIcon(QCoreApplication::applicationDirPath() + "/../res/icon.svg"));
     this->setMinimumWidth(150);
     this->setMinimumHeight(200);
 

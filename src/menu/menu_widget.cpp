@@ -8,10 +8,10 @@ MenuWidget::MenuWidget(ContentHolder* content, QWidget* parent) : QWidget{parent
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setMargin(0);
 
-    MenuButton* button = new MenuButton("../res/sudoku.svg", content);
+    MenuButton* button = new MenuButton(QCoreApplication::applicationDirPath() + "/../res/sudoku.svg", content);
     layout->addWidget(button);
 
-    MenuButton* button2 = new MenuButton("../res/image.svg", content);
+    MenuButton* button2 = new MenuButton(QCoreApplication::applicationDirPath() + "/../res/image.svg", content);
     layout->addWidget(button2);
 
     QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding);

@@ -4,6 +4,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QSpacerItem>
+#include <QCoreApplication>
 
 #include "menu_button.h"
 #include "../content/content_holder.h"
